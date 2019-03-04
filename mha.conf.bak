@@ -1,0 +1,34 @@
+[server default]
+# 访问三台 MySQL 的用户名和密码,
+# mha-manager 需要做一些诸如 Start Slave 等主从同步的操作
+user=root
+password=123456
+ssh_user=root
+ssh_port=222
+# working directory on the manager
+manager_workdir=/usr/local/mha
+manager_workdir=/var/log/masterha
+
+# working directory on MySQL servers
+# 同步的用户名和密码
+remote_workdir=/usr/local/mha
+repl_user=slave
+repl_password=123456
+
+# master 失效转移的处理脚本
+master_ip_failover_script=/usr/local/mha/master_ip_failover
+
+[server1]
+ssh_user=root
+hostname=192.168.59.103
+
+[server2]
+ssh_user=root
+hostname=192.168.59.111
+candidate_master=1 # master 宕掉后只选择该服务为新的 master
+
+[server3]
+ssh_user=root
+hostname=192.168.59.111
+port=3307
+no_master=1 # 该 MySQL 永远不做 master
