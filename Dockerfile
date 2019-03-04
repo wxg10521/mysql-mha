@@ -1,4 +1,4 @@
-FROM mysql:5.7.15 
+FROM mysql:5.7.22
 RUN set -x \
     && apt-get update && apt-get install -y --no-install-recommends ca-certificates openssh-server keepalived libdbd-mysql-perl  libconfig-tiny-perl  liblog-dispatch-perl  libparallel-forkmanager-perl make && rm -rf /var/lib/apt/lists/*
 ADD mha4mysql-manager-0.57.tar.gz /
